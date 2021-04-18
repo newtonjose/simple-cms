@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres:9.6
+    restart: on-failure
+    environment:
+      - TZ=America/Sao_Paulo
+      - PGTZ=America/Sao_Paulo
+      - POSTGRES_USER=devrails
+      - POSTGRES_PASSWORD=dev@1001
+      - POSTGRES_DB=piki-erp-dev
+    volumes:
+      - db_postgres_simple_cms:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  pgadmin4:
+    image: dpage/pgadmin4:5.1
+    restart: on-failure
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=th3clansman@th3clansmanpc.io
+      - PGADMIN_DEFAULT_PASSWORD=dev@1001
+    ports:
+      - "8081:80"
+volumes:
+  db_postgres_simple_cms:
